@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# SQLite database (auto-generated at runtime)
+*.db
+
+# Zip archives
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+.venv/
