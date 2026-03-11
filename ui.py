@@ -78,6 +78,35 @@ def restock(product_id: int, quantity: int):
 init_db()
 
 st.set_page_config(page_title="Lite Inventory Dashboard", layout="wide")
+
+
+def check_password():
+    st.markdown(
+        """
+        <style>
+        .login-container { max-width: 400px; margin: 10vh auto; }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+    with st.container():
+        st.markdown('<div class="login-container">', unsafe_allow_html=True)
+        st.title("🔒 Inventory Dashboard")
+        st.markdown("Please enter your password to continue.")
+        password = st.text_input("Password", type="password", placeholder="Enter password")
+        if st.button("Login", use_container_width=True, type="primary"):
+            if password == st.secrets["password"]:
+                st.session_state["authenticated"] = True
+                st.rerun()
+            else:
+                st.error("Incorrect password. Please try again.")
+        st.markdown("</div>", unsafe_allow_html=True)
+    st.stop()
+
+
+if not st.session_state.get("authenticated"):
+    check_password()
+
 st.title("📦 Lite Inventory Dashboard")
 
 # ── Shared data (fetched once, used across both tabs) ─────────────────────────
